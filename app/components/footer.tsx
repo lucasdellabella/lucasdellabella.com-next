@@ -20,7 +20,7 @@ function ArrowIcon() {
 export default function Footer() {
   return (
     <>
-      <div className="h-0.5 bg-gradient-to-r from-transparent dark:via-gray-600 via-gray-300 to-transparent"></div>
+      <div className="h-[1px] bg-gradient-to-r from-transparent dark:via-gray-600 via-gray-300 to-transparent"></div>
       <footer className="mt-4 mb-4 flex justify-around">
         <div className="flex space-x-1 -ml-2">
           <SocialIcon kind="twitter" href="https://twitter.com/fiveeels" />
