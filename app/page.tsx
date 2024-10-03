@@ -44,7 +44,7 @@ export default function Page() {
             <WashiTapeHighlight className="mr-1" color="bg-[#8260CF]">
               <Link
                 href="https://www.untetherlabs.com/"
-                className="transition-all py-2 hover:p-2 text-gray-600 dark:text-gray-400 underline"
+                className="transition-all py-2 px-1 hover:px-3 text-gray-800 dark:text-gray-200 underline"
               >
                 Untether Labs
               </Link>
@@ -55,10 +55,10 @@ export default function Page() {
             </span>
           </li>
           <li>
-            <WashiTapeHighlight className="mr-1" color="bg-cyan-400">
+            <WashiTapeHighlight className="mr-1" color="bg-[#009DE6]">
               <Link
                 href="https://www.safegraph.com/"
-                className="transition-all py-2 hover:p-2 text-gray-600 dark:text-gray-400 underline"
+                className="transition-all py-2 px-1 hover:px-3 text-gray-800 dark:text-gray-200 underline"
               >
                 Safegraph's
               </Link>
@@ -73,7 +73,7 @@ export default function Page() {
             <WashiTapeHighlight className="mr-1" color="bg-[#D71615]">
               <Link
                 href="https://www.yelp.com"
-                className="transition-all py-2 hover:p-2 text-gray-600 dark:text-gray-400 underline"
+                className="transition-all py-2 px-1 hover:px-3 text-gray-800 dark:text-gray-200 underline"
               >
                 Yelp's
               </Link>
@@ -88,7 +88,7 @@ export default function Page() {
             <WashiTapeHighlight className="mr-1" color="bg-[#A9AAAB]">
               <Link
                 href="https://www.apple.com/"
-                className="transition-all py-2 hover:p-2 text-gray-600 dark:text-gray-400 underline"
+                className="transition-all py-2 px-1 hover:px-3 text-gray-800 dark:text-gray-200 underline"
               >
                 Apple's
               </Link>
@@ -104,7 +104,7 @@ export default function Page() {
       <p className="mb-4 group">
         Hit me up at{" "}
         <Link
-          className="transition-all py-2 hover:p-2 outline-white hover:outline-gray-600 hover:outline dark:outline-black dark:hover:outline-gray-400 dark:hover:outline text-gray-600 dark:text-gray-400 underline"
+          className="transition-all py-2 px-1 hover:px-3 outline-white hover:outline-gray-600 hover:outline dark:outline-black dark:hover:outline-gray-400 dark:hover:outline text-gray-800 dark:text-gray-200 underline"
           href="mailto:dellabella.lucas@gmail.com"
         >
           dellabella.lucas@gmail.com
