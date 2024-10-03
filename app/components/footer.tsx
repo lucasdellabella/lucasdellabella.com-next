@@ -21,7 +21,7 @@ export default function Footer() {
   return (
     <>
       <div className="h-[1px] bg-gradient-to-r from-transparent dark:via-gray-600 via-gray-300 to-transparent"></div>
-      <footer className="mt-4 mb-4 flex justify-around">
+      <footer className="mt-4 mb-4 flex items-center justify-around">
         <div className="md:hidden">
           <SocialIconContainer />
         </div>
