@@ -1,3 +1,5 @@
+import SocialIcon from "./social-icons";
+
 function ArrowIcon() {
   return (
     <svg
@@ -17,8 +19,16 @@ function ArrowIcon() {
 
 export default function Footer() {
   return (
-    <footer className="mb-16">
-      <p className="mt-8 text-neutral-600 dark:text-neutral-300">
+    <footer className="mt-8 mb-16 flex justify-between">
+      <div className="flex space-x-1 -ml-2">
+        <SocialIcon kind="twitter" href="https://twitter.com/fiveeels" />
+        <SocialIcon
+          kind="linkedin"
+          href="https://linkedin.com/in/lucasdellabella"
+        />
+        <SocialIcon kind="github" href="https://github.com/lucasdellabella" />
+      </div>
+      <p className="text-neutral-600 dark:text-neutral-300">
         © {new Date().getFullYear()} MIT Licensed
       </p>
     </footer>

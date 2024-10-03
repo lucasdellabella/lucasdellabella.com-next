@@ -1,5 +1,4 @@
 import Link from "next/link";
-import SocialIcon from "./social-icons";
 
 const navItems = {
   "/": {
@@ -36,17 +35,6 @@ export function Navbar() {
                 </Link>
               );
             })}
-          </div>
-          <div className="flex items-center space-x-1 pr-1 ml-auto ">
-            <SocialIcon kind="twitter" href="https://twitter.com/fiveeels" />
-            <SocialIcon
-              kind="linkedin"
-              href="https://linkedin.com/in/lucasdellabella"
-            />
-            <SocialIcon
-              kind="github"
-              href="https://github.com/lucasdellabella"
-            />
           </div>
         </nav>
       </div>
