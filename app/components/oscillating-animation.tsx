@@ -3,8 +3,8 @@
 import { useEffect, useRef } from "react";
 
 const OscillatingAnimation = ({ className, offset, speed }) => {
-  const containerRef = useRef(null);
-  const shapesRef = useRef([]);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const shapesRef = useRef<HTMLDivElement[]>([]);
   const numCircles = 10;
   const shapesPerCircle = 20;
   const baseSize = 16;
@@ -12,15 +12,21 @@ const OscillatingAnimation = ({ className, offset, speed }) => {
 
   useEffect(() => {
     const createShape = () => {
-      const shape = document.createElement("div");
-      shape.className = "absolute border border-gray-300 bg-white";
-      containerRef.current.appendChild(shape);
-      return shape;
+      if (containerRef.current) {
+        const shape = document.createElement("div");
+        shape.className = "absolute border border-gray-300 bg-white";
+        containerRef.current.appendChild(shape);
+        return shape;
+      }
+      return null;
     };
 
     const initShapes = () => {
       for (let i = 0; i < numCircles * shapesPerCircle; i++) {
-        shapesRef.current.push(createShape());
+        const shape = createShape();
+        if (shape) {
+          shapesRef.current.push(shape);
+        }
       }
     };
 
