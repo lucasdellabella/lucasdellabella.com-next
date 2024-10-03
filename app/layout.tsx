@@ -47,15 +47,15 @@ export default function RootLayout({
     <html
       lang="en"
       className={cx(
-        "text-black bg-gray-50 dark:text-white dark:bg-gray-950",
+        "text-black bg-gray-50 dark:text-white dark:bg-gray-950 h-full w-full",
         GeistSans.variable,
         GeistMono.variable
       )}
     >
-      <body className="antialiased max-w-xl mx-4 mt-8 lg:mx-auto">
-        <main className="flex-auto min-w-0 mt-6 flex flex-col px-2 md:px-0">
+      <body className="antialiased max-w-xl px-4 lg:mx-auto w-full">
+        <main className="flex-auto min-w-0 pt-6 flex flex-col min-h-screen px-2 md:px-0">
           <Navbar />
-          {children}
+          <div className="grow">{children}</div>
           <Footer />
           <Analytics />
           <SpeedInsights />
