@@ -1,4 +1,5 @@
 import Link from "next/link";
+import SocialIconContainer from "./social-icon-container";
 
 const navItems = {
   "/": {
@@ -35,6 +36,9 @@ export function Navbar() {
                 </Link>
               );
             })}
+          </div>
+          <div className="hidden md:block ml-auto">
+            <SocialIconContainer />
           </div>
         </nav>
       </div>
