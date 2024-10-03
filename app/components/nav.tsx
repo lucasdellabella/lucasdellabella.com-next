@@ -8,8 +8,11 @@ const navItems = {
   "/blog": {
     name: "blog",
   },
-  "https://vercel.com/templates/next.js/portfolio-starter-kit": {
-    name: "deploy",
+  "/projects": {
+    name: "projects",
+  },
+  "/music": {
+    name: "music",
   },
 };
 
@@ -27,14 +30,14 @@ export function Navbar() {
                 <Link
                   key={path}
                   href={path}
-                  className="transition-all hover:text-neutral-800 dark:hover:text-neutral-200 flex align-middle relative py-1 px-2 m-1"
+                  className="transition-all outline-white hover:outline-gray-600 hover:outline  hover:text-neutral-800 dark:hover:text-neutral-200 flex align-middle relative py-1 px-2 m-1"
                 >
                   {name}
                 </Link>
               );
             })}
           </div>
-          <div className="flex items-center opacity-70 space-x-4 ml-auto py-1 px-2">
+          <div className="flex items-center space-x-1 pr-1 ml-auto ">
             <SocialIcon kind="twitter" href="https://twitter.com/fiveeels" />
             <SocialIcon
               kind="linkedin"
