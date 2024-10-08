@@ -1,13 +1,15 @@
 // components/ListProjects.tsx
 import React from "react";
-import { IconType } from "react-icons";
-import {
-  FiActivity,
-  FiBook,
-  FiCoffee,
-  FiShield,
-  FiUsers,
-} from "react-icons/fi";
+import { IconBaseProps, IconType } from "react-icons";
+import { FiCoffee, FiUsers } from "react-icons/fi";
+import { GiCrenulatedShield } from "react-icons/gi";
+import { GrToast } from "react-icons/gr";
+import { HiOutlineSparkles } from "react-icons/hi2";
+import { LiaKiwiBirdSolid } from "react-icons/lia";
+import { RiNotionFill } from "react-icons/ri";
+import { SiJupyter } from "react-icons/si";
+import { VscRobot, VscVscode } from "react-icons/vsc";
+
 import HoverEffect from "./ui/hover-effect";
 
 interface Project {
@@ -22,13 +24,24 @@ interface ListProjectsProps {
 }
 
 const iconMap: Record<string, IconType> = {
-  robot: FiActivity,
-  sparkle: FiActivity,
-  "book-open": FiBook,
-  shield: FiShield,
+  robot: VscRobot,
+  sparkle: HiOutlineSparkles,
+  "book-open": RiNotionFill,
+  shield: GiCrenulatedShield,
   users: FiUsers,
-  toast: FiCoffee,
-  fruit: FiCoffee, // Using coffee icon as a placeholder for fruit
+  toast: GrToast,
+  fruit: LiaKiwiBirdSolid, // Using coffee icon as a placeholder for fruit
+  vscode: VscVscode,
+  jupyter: (props: IconBaseProps) => {
+    return (
+      <div className="relative">
+        <SiJupyter {...props} />
+        <div className="absolute text-[0.35rem] font-bold top-[50%] left-[50%] -translate-[50%]">
+          Jupyter
+        </div>
+      </div>
+    );
+  },
 };
 
 const ListProjects: React.FC<ListProjectsProps> = ({ projects }) => {

@@ -30,6 +30,12 @@ export default function ProjectsPage() {
         icon: "book-open",
       },
       {
+        name: "Jupyter - Run Notebook Section",
+        link: "https://marketplace.visualstudio.com/items?itemName=LucasDellaBella.jupyter-run-notebook-section",
+        desc: "A VSCode extension to run sections of your jupyter notebook, organized by markdown, via shortcut.",
+        icon: "jupyter",
+      },
+      {
         name: "Lineage",
         link: "https://lineagenft.com",
         desc: "A fantasy NFT experimenting with on-chain family-ties.",
