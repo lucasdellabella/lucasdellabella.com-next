@@ -21,6 +21,7 @@ export function generateMetadata({ params }) {
     title,
     publishedAt: publishedTime,
     summary: description,
+    isDraft,
     image,
   } = post.metadata;
   let ogImage = image
@@ -30,6 +31,7 @@ export function generateMetadata({ params }) {
   return {
     title,
     description,
+    isDraft,
     openGraph: {
       title,
       description,
