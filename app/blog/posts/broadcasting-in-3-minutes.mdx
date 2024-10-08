@@ -4,69 +4,120 @@ publishedAt: "2024-10-02"
 summary: "An easy intuition for broadcasting"
 ---
 
-## CORE IDEAS
+Broadcasting, or arithmetic operations between tensors, is simple. If you're confused, **give me 180 seconds** to give you the most straightforward explanation on the web.
 
-- you regularly want to add, multiply, subtract or divide numbers in a tensor. Anytime you do this, YOU must do it via elementwise operations. That means tensors need to match shape.
-- if they do great, if they don't, what now?
+## Two things to know:
 
-- broadcasting: look at the shape, right to left
+1. Arithmetic between two tensors is always done elementwise, and requires tensor shapes to match.
+2. Broadcasting resizes tensors of different shape so that arithmetic can then be done.
 
-Broadcasting is a convenience and efficiency feature built into pytorch and numpy to make it easy to work with multidimensional tensors. But at first, when dealing with 3+ dimensional tensors, it can be confusing how broadcasting plays out. Until I was familiar with the process, I found it hard to read certain lines of pytorch code.
+#### Tensor arithmetic requires matching tensor shapes
 
-But it turns out that doing broadcasting of arrays in your head isn't hard.
+```typescript
+// Good
+[10, 11, 12] + [1, 1, 1] = [11, 12, 13]
 
-The default assumption is that anytime you multiply, add, divide, or subtract two tensors, you're attempting to apply that operation elementwise.
-
-```python
-[11, 12, 13] - [1, 1, 1] = [10, 11, 12]
+// No good
+[10, 11, 12] + [1, 1]    = ?
 ```
 
-Simple, yeah? Well for convenience-sake, numpy and pytorch support broadcasting tensors that don't "exactly" match up in shape.
+#### A "broadcast" duplicates items to guarantee matching size, so arithmetic is possible
 
-At first glance, the broadcasting seems confusing and like black magic.
+```typescript
+// Your input
+[10, 11, 12] + [1]       = [11, 12, 13]
 
-But it's actually incredibly simple, and there is only one operation that is happening - the broadcast - at any given step in the broadcasting procedure.
-
-So here's how it works.
-
-When you try to do one of + / - \* between two tensors, this function needs to be applied elementwise. If you have two identically shaped tensors, our subtraction operation runs as expected.
-
-But when you have two tensors, say shaped [5,3,2] and [1,2], pytorch and numpy will still try to do the operation according to it's broadcasting rules.
-
-...
-
-```python
-[
-    [[0, 0.4], [1, 0.7], [1, 0.2]],
-    [[0, 0.6], [1, 0.5], [1, 0.65]],
-    [[1, 0.5], [1, 0.8], [1, 0.4]],
-    [[0, 0.9], [1, 0.6], [0, 0.35]],
-    [[0, 1.0], [0, 0.7], [1, 0.99]],
-]
-
-- [[[0, 0.1]],
-   [[0, 0.2]],
-   [[0, 0.3]],
-   [[0, 0.4]],
-   [[0, 0.5]],
-]
+// After broadcasting
+[10, 11, 12] + [1, 1, 1] = [11, 12, 13]
 ```
 
-This is about as confusing as it gets. We're at the final boss. What's happening here?
-First, we _always_ look at the tensor shapes:
+## So how does this actually work?
 
-```python
-[5, 3, 2]
-[5, 1, 2]
+Every tensor has a corresponding shape.
+
+```typescript
+tensor = [[1, 2, 3],
+          [4, 5, 6]]
+
+shape  = [2, 3] <-
 ```
 
-Great, so we're going to be applying the items of the last dimension elementwise (2 == 2). We're going to _broadcast_ to fill out our second dimension so it matches the 3 items. That means we're _broadcasting_ our vector, in this case some [a, b], across all of [a1, b1], [a2, b2], [a3, b3].
+Anytime we do arithmetic between two tensors that don't have identical shapes, we see if we can use broadcasting to make their shapes match. The example below contains the _shape vectors_ of the two tensors involved in the arithmetic operation.
 
-Then we have matching tensor dimensions, and we just do the elementwise multiplication.
+When thinking about broadcasting, we don't need to think about what's in the tensor. Only about the **shape** of the tensor.
 
-The broadcasting happens _before_ the math ever happens. It essentially just expends your tensors so that the elementwise arithmetic can happen.
+### An example
 
-So here are the general rules to follow when doing broadcasting in your head:
+We start by right aligning the two tensors, and then begin comparing dimension by dimension.
 
-- Look at the tensor shapes, going right to left AKA inside-out.
-- If the shapes visually match, you apply them.
+#### Step 1
+
+```typescript
+shapeA = [4, 5, 3, 2]
+shapeB =    [5, 1, 2]
+                   ^
+```
+
+These are equal, so no change.
+
+#### Step 2
+
+```typescript
+shapeA = [4, 5, 3, 2] => [4, 5, 3, 2]
+shapeB =    [5, 1, 2]       [5, 3, 2]
+                ^               ^
+```
+
+One of the two dimensions has a size of 1, we just duplicate that single item dimension to match the dimensions between the two tensors.
+
+#### Step 3
+
+```typescript
+shapeA = [4, 5, 3, 2]
+shapeB =    [5, 3, 2]
+             ^
+```
+
+The dimension sizes match, so no change. Continue leftwards.
+
+#### Step 4
+
+```typescript
+shapeA = [4, 5, 3, 2] => [4, 5, 3, 2] => [4, 5, 3, 2]
+shapeB =    [5, 3, 2]    [1, 5, 3, 2]    [4, 5, 3, 2]
+          ^               ^               ^
+```
+
+One of the tensors doesn't have as many dimensions as the other! So we wrap it in a new dimension, and then broadcast it as usual. Now that the tensor dimensions match, we can multiply them as usual.
+
+## What's being duplicated?
+
+```typescript
+shapeA = [4, 5, 3, 2] => [4, 5, 3, 2] => [4, 5, 3, 2]
+shapeB =    [5, 3, 2]    [1, 5, 3, 2]    [4, 5, 3, 2]
+          ^               ^               ^
+
+// We duplicate [5, 3, 2]
+```
+
+We are always duplicating the entirety of the data whose dimensions to the right. In this case we're duplicating everything in that `[5, 3, 2]` 4 times.
+
+## Yes, we're duplicating vectors and matrices
+
+```typescript
+tensorA = [[1, 2], [3, 4], [5, 6]]
+tensorB = [[0, 2]]
+
+shapeA = [3, 2] => [3, 2]
+shapeB = [1, 2] => [3, 2]
+
+// tensorB gets broadcast to [[0, 2], [0, 2], [0, 2]]
+tensorA - tensorB
+
+```
+
+## Run it back
+
+Again, broadcasting is simply an operation to resize your tensor so that arithmetic can be done between tensors of matching sizes. That's it. Try it out in pytorch / matlab / numpy or whatever lib you write code with.
+
+@ me on [twitter.com](https://twitter.com/fiveeels) if you found this helpful!
