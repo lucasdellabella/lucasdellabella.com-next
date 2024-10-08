@@ -104,7 +104,7 @@ export default function Page() {
       <p className="mb-4 group">
         Hit me up at{" "}
         <Link
-          className="transition-all py-2 px-1 hover:px-3 outline-white hover:outline-gray-600 hover:outline dark:outline-black dark:hover:outline-gray-400 dark:hover:outline text-gray-800 dark:text-gray-200 underline"
+          className="transition-all py-2 px-1 hover:px-3 outline-neutral-50 dark:outline-neutral-950 hover:outline-gray-600 outline dark:outline-black dark:hover:outline-gray-400 dark:hover:outline text-gray-800 dark:text-gray-200 underline"
           href="mailto:dellabella.lucas@gmail.com"
         >
           dellabella.lucas@gmail.com
