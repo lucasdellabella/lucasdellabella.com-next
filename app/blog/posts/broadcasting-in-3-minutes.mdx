@@ -1,5 +1,5 @@
 ---
-title: "Numpy + PyTorch broadcasting... in 3 minutes."
+title: "How PyTorch Broadcasting Works in 3 Minutes"
 publishedAt: "2024-10-02"
 summary: "An easy intuition for broadcasting"
 ---
@@ -102,7 +102,7 @@ shapeB =    [5, 3, 2]    [1, 5, 3, 2]    [4, 5, 3, 2]
 
 We are always duplicating the entirety of the data whose dimensions to the right. In this case we're duplicating everything in that `[5, 3, 2]` 4 times.
 
-## Yes, we're duplicating vectors and matrices
+## Yes, we're often duplicating vectors and matrices
 
 ```typescript
 tensorA = [[1, 2], [3, 4], [5, 6]]
@@ -120,4 +120,4 @@ tensorA - tensorB
 
 Again, broadcasting is simply an operation to resize your tensor so that arithmetic can be done between tensors of matching sizes. That's it. Try it out in pytorch / matlab / numpy or whatever lib you write code with.
 
-@ me on [twitter.com](https://twitter.com/fiveeels) if you found this helpful!
+@ me on [twitter.com](https://twitter.com/fiveeels) if you found this helpful or have lingering questions.
