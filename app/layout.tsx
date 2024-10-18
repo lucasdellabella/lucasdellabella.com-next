@@ -5,6 +5,7 @@ import { GeistSans } from "geist/font/sans";
 import type { Metadata } from "next";
 import Footer from "./components/footer";
 import { Navbar } from "./components/nav";
+import ShadertoyDemo2 from "./components/shadertoy-demo-2";
 import "./global.css";
 import { baseUrl } from "./sitemap";
 
@@ -52,19 +53,20 @@ export default function RootLayout({
         GeistMono.variable
       )}
     >
-      {/* Background pattern */}
-      <div className="dark:hidden absolute inset-0 -z-10 h-full w-full bg-gray-50 bg-[linear-gradient(to_right,#8080800d_1px,transparent_1px),linear-gradient(to_bottom,#8080800d_1px,transparent_1px)] bg-[size:14px_24px]">
-        <div className="absolute left-0 right-0 top-0 -z-10 m-auto h-[310px] w-[310px] rounded-full opacity-20 blur-[100px]"></div>
-      </div>
-      <div className="hidden dark:block absolute inset-0 -z-10 h-full w-full bg-gray-950 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:14px_24px]">
-        <div className="absolute left-0 right-0 top-0 -z-10 m-auto h-[310px] w-[310px] rounded-full opacity-20 blur-[100px]"></div>
-      </div>
-
       {/* App */}
       <body className="antialiased max-w-xl px-4 md:mx-auto w-full">
+        <div
+          className="fixed -z-[99999] -top-[10%] -left-[10%] opacity-70"
+          style={{ width: "120vw", height: "120vh" }}
+        >
+          <ShadertoyDemo2 />
+        </div>
         <main className="flex-auto min-w-0 pt-6 flex flex-col min-h-screen px-2 md:px-0">
           <Navbar />
-          <div className="grow">{children}</div>
+          <div className="relative p-8">
+            <div className="absolute bg-slate-50 border-slate-900 dark:bg-slate-900 dark:border-slate-50 top-0 left-0 -z-50 w-full h-full border opacity-70"></div>
+            <div className="grow">{children}</div>
+          </div>
           <Footer />
           <Analytics />
           <SpeedInsights />

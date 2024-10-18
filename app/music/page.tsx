@@ -30,35 +30,37 @@ const Page = () => {
   };
 
   return (
-    <div className="iframe-container">
-      <div className="button-backing bg-gradient-to-tr from-[rgba(200,200,200,1)] to-[rgb(249,250,251)] to-30% dark:bg-gradient-to-br dark:from-transparent dark:to-[rgba(10,10,10,1)]">
-        <div className="button-wrapper">
-          <button
-            onClick={nextSong}
-            className="flex cursor-pointer justify-center items-center"
-          >
-            <SkipForward
-              size={32}
-              className="skip-icon dark:text-neutral-50 text-neutral-700"
-            />
-          </button>
+    <div>
+      <h1 className="font-semibold text-2xl mb-8 tracking-tighter">My Music</h1>
+      <div className="iframe-container">
+        <div className="button-backing bg-gradient-to-tr from-[rgba(200,200,200,1)] to-[rgb(249,250,251)] to-30% dark:bg-gradient-to-br dark:from-transparent dark:to-[rgba(10,10,10,1)]">
+          <div className="button-wrapper">
+            <button
+              onClick={nextSong}
+              className="flex cursor-pointer justify-center items-center"
+            >
+              <SkipForward
+                size={32}
+                className="skip-icon dark:text-neutral-50 text-neutral-700"
+              />
+            </button>
+          </div>
         </div>
-      </div>
-      {songs.map((song, i) => (
-        <iframe
-          key={song.id}
-          style={{ display: i === index ? "block" : "none" }}
-          width="100%"
-          height="300"
-          scrolling="no"
-          frameBorder="no"
-          allow="autoplay scripts"
-          src={embedURL(song.id)}
-        ></iframe>
-      ))}
-      <div className="loading-border"></div>
+        {songs.map((song, i) => (
+          <iframe
+            key={song.id}
+            style={{ display: i === index ? "block" : "none" }}
+            width="100%"
+            height="300"
+            scrolling="no"
+            frameBorder="no"
+            allow="autoplay scripts"
+            src={embedURL(song.id)}
+          ></iframe>
+        ))}
+        <div className="loading-border"></div>
 
-      <style jsx>{`
+        <style jsx>{`
         .button-backing {
           border-radius: 100px;
           position: absolute;
@@ -126,6 +128,7 @@ const Page = () => {
           box-shadow: -5px 5px 18px;
         
       `}</style>
+      </div>
     </div>
   );
 };

@@ -29,13 +29,10 @@ const WashiTapeHighlight = ({
 export default function Page() {
   return (
     <section>
-      <h1 className="mb-8 text-2xl font-semibold tracking-tighter">
-        My Portfolio
+      <h1 className="mb-2 text-2xl font-semibold tracking-tighter">
+        Hey! I'm Lucas
       </h1>
-      <p className="mb-8">
-        Hey! I'm Lucas - an ex-YC founder and bedroom hacker originally from the
-        east coast.
-      </p>
+      <p className="mb-8">I collect various artifacts from my life here.</p>
 
       <div className="mb-8">
         <p className="mb-2">I've previously worked on:</p>
